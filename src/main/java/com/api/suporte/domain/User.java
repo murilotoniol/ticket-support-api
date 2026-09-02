@@ -3,21 +3,19 @@ package com.api.suporte.domain;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "tbUser")
+@Table(name = "users")
 public class User {
 
     @Id
-    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
     private String name;
 
-    @Column(name = "email")
     private String email;
 
-    public User(){}
+    public User() {
+    }
 
     public User(Long id, String name, String email) {
         this.id = id;

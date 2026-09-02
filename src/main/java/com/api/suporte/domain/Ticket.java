@@ -1,45 +1,39 @@
 package com.api.suporte.domain;
 
-import com.api.suporte.dtos.TicketPriority;
-import com.api.suporte.dtos.TicketStatus;
+import com.api.suporte.domain.enums.TicketPriority;
+import com.api.suporte.domain.enums.TicketStatus;
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "tbTicket")
+@Table(name = "tickets")
 public class Ticket {
 
     @Id
-    @Column(name = "id")
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @Column(name = "title")
     private String title;
 
-    @Column(name = "description")
     private String description;
 
     @ManyToOne
     @JoinColumn(name = "creator_id")
-    @Column(name = "creator")
     private User creator;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "priority")
     private TicketPriority priority;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "status")
     private TicketStatus status;
 
-    @Column(name = "createdAt")
     private LocalDateTime createdAt;
 
-    public Ticket(){}
+    public Ticket() {
+    }
 
-    public Ticket(int id, String title, String description, User creator, TicketPriority priority, TicketStatus status, LocalDateTime createdAt) {
+    public Ticket(Long id, String title, String description, User creator, TicketPriority priority, TicketStatus status, LocalDateTime createdAt) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -49,11 +43,11 @@ public class Ticket {
         this.createdAt = createdAt;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
