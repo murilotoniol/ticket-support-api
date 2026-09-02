@@ -1,6 +1,7 @@
 package com.api.suporte.controller;
 
 import com.api.suporte.domain.User;
+import com.api.suporte.dto.UserRequestDTO;
 import com.api.suporte.dto.UserResponseDTO;
 import com.api.suporte.service.UserService;
 import org.springframework.http.ResponseEntity;
@@ -26,5 +27,11 @@ public class UserController {
                 .toList();
 
         return ResponseEntity.ok(users);
+    }
+
+    @PostMapping("/create")
+    public ResponseEntity<UserResponseDTO> addUser(@RequestBody UserRequestDTO dto){
+        UserResponseDTO responseDTO = userService.addUser(dto);
+        return ResponseEntity.ok(responseDTO);
     }
 }
